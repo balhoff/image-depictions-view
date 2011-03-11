@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="/Users/jim/Applications/Protege-4.1.app/Contents/Resources/Java/plugins/org.coode.annotate.jar"/>
+	<classpathentry kind="lib" path="/Users/jim/Applications/Protege-4.1.app/Contents/Resources/Java/plugins/org.coode.bookmark.jar"/>
+	<classpathentry kind="lib" path="/Users/jim/Applications/Protege-4.1.app/Contents/Resources/Java/plugins/org.coode.dlquery.jar"/>
+	<classpathentry kind="lib" path="/Users/jim/Applications/Protege-4.1.app/Contents/Resources/Java/plugins/org.coode.matrix.jar"/>
+	<classpathentry kind="lib" path="/Users/jim/Applications/Protege-4.1.app/Contents/Resources/Java/plugins/org.coode.obotools.jar"/>
+	<classpathentry kind="lib" path="/Users/jim/Applications/Protege-4.1.app/Contents/Resources/Java/plugins/org.coode.owlviz.jar"/>
+	<classpathentry kind="lib" path="/Users/jim/Applications/Protege-4.1.app/Contents/Resources/Java/plugins/org.protege.editor.owl.jar"/>
+	<classpathentry kind="lib" path="/Users/jim/Applications/Protege-4.1.app/Contents/Resources/Java/plugins/org.protege.ontograf.jar"/>
+	<classpathentry kind="lib" path="/Users/jim/Applications/Protege-4.1.app/Contents/Resources/Java/plugins/org.semanticweb.HermiT.jar"/>
+	<classpathentry kind="lib" path="/Users/jim/Applications/Protege-4.1.app/Contents/Resources/Java/plugins/org.semanticweb.owl.owlapi.jar"/>
+	<classpathentry kind="lib" path="/Users/jim/Applications/Protege-4.1.app/Contents/Resources/Java/plugins/uk.ac.manchester.cs.owl.factplusplus.jar"/>
+	<classpathentry kind="lib" path="/Users/jim/Applications/Protege-4.1.app/Contents/Resources/Java/bundle/org.apache.felix.bundlerepository-1.4.2.jar"/>
+	<classpathentry kind="lib" path="/Users/jim/Applications/Protege-4.1.app/Contents/Resources/Java/bundle/org.eclipse.equinox.common.jar"/>
+	<classpathentry kind="lib" path="/Users/jim/Applications/Protege-4.1.app/Contents/Resources/Java/bundle/org.eclipse.equinox.registry.jar"/>
+	<classpathentry kind="lib" path="/Users/jim/Applications/Protege-4.1.app/Contents/Resources/Java/bundle/org.eclipse.equinox.supplement.jar"/>
+	<classpathentry kind="lib" path="/Users/jim/Applications/Protege-4.1.app/Contents/Resources/Java/bundle/org.protege.common.jar"/>
+	<classpathentry kind="lib" path="/Users/jim/Applications/Protege-4.1.app/Contents/Resources/Java/bundle/org.protege.editor.core.application.jar"/>
+	<classpathentry kind="lib" path="/Users/jim/Applications/Protege-4.1.app/Contents/Resources/Java/bundle/org.protege.jaxb.jar"/>
+	<classpathentry kind="lib" path="/Users/jim/Applications/Protege-4.1.app/Contents/Resources/Java/felix.jar"/>
+	<classpathentry kind="lib" path="/Users/jim/Applications/Protege-4.1.app/Contents/Resources/Java/ProtegeLauncher.jar"/>
+	<classpathentry kind="lib" path="/phenex-git/lib/log4j-1.2.15.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
