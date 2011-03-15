@@ -23,5 +23,23 @@
 	<classpathentry kind="lib" path="/Users/jim/Applications/Protege-4.1.app/Contents/Resources/Java/felix.jar"/>
 	<classpathentry kind="lib" path="/Users/jim/Applications/Protege-4.1.app/Contents/Resources/Java/ProtegeLauncher.jar"/>
 	<classpathentry kind="lib" path="/phenex-git/lib/log4j-1.2.15.jar"/>
+	<classpathentry kind="lib" path="lib/batik-anim.jar"/>
+	<classpathentry kind="lib" path="lib/batik-awt-util.jar"/>
+	<classpathentry kind="lib" path="lib/batik-bridge.jar"/>
+	<classpathentry kind="lib" path="lib/batik-codec.jar"/>
+	<classpathentry kind="lib" path="lib/batik-css.jar"/>
+	<classpathentry kind="lib" path="lib/batik-dom.jar"/>
+	<classpathentry kind="lib" path="lib/batik-ext.jar"/>
+	<classpathentry kind="lib" path="lib/batik-extension.jar"/>
+	<classpathentry kind="lib" path="lib/batik-gui-util.jar"/>
+	<classpathentry kind="lib" path="lib/batik-gvt.jar"/>
+	<classpathentry kind="lib" path="lib/batik-parser.jar"/>
+	<classpathentry kind="lib" path="lib/batik-script.jar"/>
+	<classpathentry kind="lib" path="lib/batik-svg-dom.jar"/>
+	<classpathentry kind="lib" path="lib/batik-svggen.jar"/>
+	<classpathentry kind="lib" path="lib/batik-swing.jar"/>
+	<classpathentry kind="lib" path="lib/batik-transcoder.jar"/>
+	<classpathentry kind="lib" path="lib/batik-util.jar"/>
+	<classpathentry kind="lib" path="lib/batik-xml.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

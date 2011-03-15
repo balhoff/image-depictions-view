@@ -7,8 +7,7 @@ Bundle-Description: An alternative to the annotations view with configurable fie
 Bundle-Vendor: National Evolutionary Synthesis Center
 Bundle-DocURL: http://www.nescent.org
 Bundle-ClassPath: .
-Import-Package: org.osgi.framework,
- org.apache.log4j,
+Import-Package: javax.imageio,
  javax.swing,
  javax.swing.border,
  javax.swing.colorchooser,
@@ -25,7 +24,9 @@ Import-Package: org.osgi.framework,
  javax.swing.text.html.parser,
  javax.swing.text.rtf,
  javax.swing.tree,
- javax.swing.undo
+ javax.swing.undo,
+ org.apache.log4j,
+ org.osgi.framework
 Bundle-Version: 0.1.0
 Bundle-Activator: org.protege.editor.core.plugin.DefaultPluginActivator
 Require-Bundle: org.eclipse.equinox.registry,
