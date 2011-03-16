@@ -4,11 +4,13 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Rectangle;
+import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
@@ -73,16 +75,17 @@ public class ImageDepictionComponent extends JComponent implements Scrollable {
         for (IRI iri : this.model.getDirectImageDepictions()) {
             try {
                 gbc.gridy++;
-                //final BufferedImage image = ImageIO.read(iri.toURI().toURL());
+                final BufferedImage image = ImageIO.read(iri.toURI().toURL());
+                //final BufferedImage image = ImageIO.read(new URL("http://images.apple.com/v20110310162107/startpage/images/promo_ipad_takeover_black20110308.jpg"));
                 //final ImageIcon icon = new ImageIcon(new URL("http://images.apple.com/v20110310162107/startpage/images/promo_ipad_takeover_black20110308.jpg"));
                 //final URLConnection connection = iri.toURI().toURL().openConnection();
-                final URLConnection connection = new URL("http://images.apple.com/v20110310162107/startpage/images/promo_ipad_takeover_black20110308.jpg").openConnection();
-                connection.connect();
-                final Object content = connection.getContent();
-                this.add(new JLabel(content.getClass().toString()), gbc);
+//                final URLConnection connection = new URL("http://images.apple.com/v20110310162107/startpage/images/promo_ipad_takeover_black20110308.jpg").openConnection();
+//                connection.connect();
+//                final Object content = connection.getContent();
+                //this.add(new JLabel(content.getClass().toString()), gbc);
                 
                 //this.add(new JLabel(icon), gbc);
-                //this.add(new JLabel(image.getClass().toString()), gbc);
+                this.add(new JLabel(new ImageIcon(image)), gbc);
             } catch (MalformedURLException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();

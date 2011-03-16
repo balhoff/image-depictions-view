@@ -8,11 +8,17 @@ import org.protege.editor.owl.ui.view.AbstractOWLSelectionViewComponent;
 import org.semanticweb.owlapi.model.OWLEntity;
 import org.semanticweb.owlapi.model.OWLObject;
 
+import com.volantis.map.ics.imageio.SVGActivator;
+
 @SuppressWarnings("serial")
 public class ImageDepictionView extends AbstractOWLSelectionViewComponent {
 
     private ImageDepictionModel model;
     private ImageDepictionComponent component;
+    private static final SVGActivator svgActivator = new SVGActivator();
+    static {
+        svgActivator.activate();
+    }
 
     @Override
     public void initialiseView() {

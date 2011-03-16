@@ -80,13 +80,20 @@
    <target name = "buildlibs" depends="init, checkProtegeLibsAndReport">
        <unjar dest="${build}"
               src="${common.lib}">
-           <patternset>
-               <include name = "**/log4j.jar"/>
-           </patternset>
        </unjar>
    </target>
+	<target name = "unjar-jars" depends="init, checkProtegeLibsAndReport">
+	       <unjar dest="${classes}">
+	       	<fileset dir="./lib"/>
+	       </unjar>
+	   </target>
 
-
+	
+	<target name="copy-libs" depends="init, checkProtegeLibsAndReport">
+		<copy todir="${classes}/lib">
+		         <fileset dir="./lib"/>
+		 </copy>
+	</target>
 
    <!-- 
         The following target only needs to be modified if the user
@@ -111,6 +118,9 @@
        <pathelement location="${owl.editor.jar}"/>
        <pathelement location="${owl.lib}"/>
        <fileset dir="${genlib}"/>
+     	<fileset dir="lib">
+     	            <include name="*"/>
+     	    </fileset>
      </path>
    </target>
 
@@ -193,7 +203,7 @@
     </target>
       
 
-   <target name = "compile" depends = "buildlibs, checkProtegeLibsAndReport">
+   <target name = "compile" depends = "buildlibs, checkProtegeLibsAndReport, copy-libs">
      <javac srcdir = "${src}"
             destdir = "${classes}" 
             debug="on"
@@ -211,6 +221,9 @@
         <attribute name="Build-Date" value = "${build.time}"/>
         <attribute name="Bundle-Version" value="${bundle.version}"/>
      </manifest>
+   	<copy todir="${classes}/META-INF/services">
+   	            <fileset dir="META-INF/services"/>
+   	        </copy>
    </target>
 
    <target name = "jar" depends = "compile, copy.resources">
