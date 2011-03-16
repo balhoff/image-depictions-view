@@ -85,7 +85,7 @@ public class ExtensionMatchParser {
      *
      * @return a non-null Map of Matchers
      */
-    public Map getMatchers() {
+    public Map<Object,Object> getMatchers() {
         return map;
     }
 }

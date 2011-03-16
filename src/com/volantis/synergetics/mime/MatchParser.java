@@ -46,7 +46,7 @@ public class MatchParser {
 
     private static final char ADDITIONAL_MATCH_CHAR = '>';
 
-    private List matchers = new ArrayList();
+    private List<Matcher> matchers = new ArrayList<Matcher>();
 
     private int maxDataLength = 0;
 
@@ -136,7 +136,7 @@ public class MatchParser {
         if (ADDITIONAL_MATCH_CHAR == first) {
             // for match continuation
             match.setOffset(Integer.parseInt(offSetField.substring(1).trim()));
-            Matcher mainMatcher = (Matcher) matchers.get(matchers.size() - 1);
+            Matcher mainMatcher = matchers.get(matchers.size() - 1);
             mainMatcher.addMatcher(matcher);
         } else {
             // for first match line
@@ -170,7 +170,7 @@ public class MatchParser {
      *
      * @return a non-null List of Matchers
      */
-    public List getMatchers() {
+    public List<Matcher> getMatchers() {
         return matchers;
     }
 

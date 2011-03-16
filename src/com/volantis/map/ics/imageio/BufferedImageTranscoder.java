@@ -52,6 +52,7 @@ public class BufferedImageTranscoder extends ImageTranscoder {
      * @param output              the output where to store the image
      * @param TranscoderException if an error occured while storing the image
      */
+    @Override
     public void writeImage(BufferedImage img,
                            TranscoderOutput output)
         throws TranscoderException {
@@ -78,6 +79,7 @@ public class BufferedImageTranscoder extends ImageTranscoder {
      * @param width  the image width in pixels
      * @param height the image height in pixels
      */
+    @Override
     public BufferedImage createImage(int width, int height) {
         final BufferedImage image =
             new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);

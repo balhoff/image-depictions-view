@@ -49,7 +49,7 @@ public class Match {
 
     private char comparator = '=';
 
-    private List matches = new ArrayList(0);
+    private List<Match> matches = new ArrayList<Match>(0);
 
     public String getMimeType() {
         return mimeType;
@@ -91,7 +91,7 @@ public class Match {
         this.bitmask = bitmask;
     }
 
-    public List getMatches() {
+    public List<Match> getMatches() {
         return matches;
     }
 
@@ -119,6 +119,7 @@ public class Match {
         this.caseInsensitive = caseInsensitive;
     }
 
+    @Override
     public String toString() {
         StringBuffer b = new StringBuffer();
         b.append("offset:").append(offset);

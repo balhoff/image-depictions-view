@@ -20,14 +20,15 @@ along with Volantis Mobility Server.  If not, see <http://www.gnu.org/licenses/>
  */
 package com.volantis.map.ics.imageio;
 
-import com.volantis.synergetics.mime.DefaultMimeDiscoverer;
-import com.volantis.synergetics.mime.MimeDiscoverer;
+import java.io.IOException;
+import java.util.Locale;
 
 import javax.imageio.ImageReader;
 import javax.imageio.spi.ImageReaderSpi;
 import javax.imageio.stream.ImageInputStream;
-import java.io.IOException;
-import java.util.Locale;
+
+import com.volantis.synergetics.mime.DefaultMimeDiscoverer;
+import com.volantis.synergetics.mime.MimeDiscoverer;
 
 /**
  * This class is responsible for defining the configuration properties of
@@ -98,6 +99,7 @@ public class SVGImageReaderSpi extends ImageReaderSpi {
     }
 
     // Javadoc inherited
+    @Override
     public String getDescription(Locale locale) {
         // @todo later return a localized description
         // Localize as appropriate
@@ -105,6 +107,7 @@ public class SVGImageReaderSpi extends ImageReaderSpi {
     }
 
     // Javadoc inherited
+    @Override
     public boolean canDecodeInput(Object input)
         throws IOException {
 
@@ -140,6 +143,7 @@ public class SVGImageReaderSpi extends ImageReaderSpi {
     }
 
     // Javadoc inherited
+    @Override
     public ImageReader createReaderInstance(Object extension) {
         return new SVGImageReader(this);
     }

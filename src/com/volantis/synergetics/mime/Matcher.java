@@ -42,7 +42,7 @@ public class Matcher {
 
     private Match match;
 
-    private List matchers = new ArrayList(0);
+    private List<Matcher> matchers = new ArrayList<Matcher>(0);
 
     /**
      * Test data stream mime type.
@@ -75,7 +75,7 @@ public class Matcher {
                 if (matchers.size() > 0) {
                     matched = false;
                     for (int i = 0; i < matchers.size() && !matched; i++) {
-                        Matcher m = (Matcher) matchers.get(i);
+                        Matcher m = matchers.get(i);
                         if (m.test(data)) {
                             match.addMatch(m.getMatch());
                             matched = true;
@@ -284,7 +284,7 @@ public class Matcher {
         this.match = match;
     }
 
-    public List getMatchers() {
+    public List<Matcher> getMatchers() {
         return matchers;
     }
 
@@ -297,8 +297,8 @@ public class Matcher {
      */
     public String getMimeType() {
         StringBuffer b = new StringBuffer();
-        for (Iterator iter = match.getMatches().iterator(); iter.hasNext();) {
-            Match subMatch = (Match) iter.next();
+        for (Iterator<Match> iter = match.getMatches().iterator(); iter.hasNext();) {
+            Match subMatch = iter.next();
             b.append(subMatch.getMimeType());
         }
         if (match.getMatches().size() == 0) {
@@ -311,11 +311,12 @@ public class Matcher {
         return b.toString();
     }
 
+    @Override
     public String toString() {
         StringBuffer b = new StringBuffer();
         b.append(match);
-        for (Iterator iter = matchers.iterator(); iter.hasNext();) {
-            Matcher matcher = (Matcher) iter.next();
+        for (Iterator<Matcher> iter = matchers.iterator(); iter.hasNext();) {
+            Matcher matcher = iter.next();
             b.append("\n  > ");
             b.append(matcher);
         }

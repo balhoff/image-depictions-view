@@ -69,6 +69,7 @@ public class SVGImageReader extends ImageReader {
     }
 
     // Javadoc inherited
+    @Override
     public BufferedImage read(int imageIndex, ImageReadParam param)
         throws IOException {
 
@@ -87,40 +88,46 @@ public class SVGImageReader extends ImageReader {
     }
 
     // Javadoc inherited
+    @Override
     public int getHeight(int imageIndex) throws IOException {
         return read(imageIndex).getHeight();
     }
 
     // Javadoc inherited
+    @Override
     public int getWidth(int imageIndex) throws IOException {
         return read(imageIndex).getWidth();
     }
 
     // Javadoc inherited
+    @Override
     public int getNumImages(boolean allowSearch) throws IOException {
         return 1;
     }
 
     // Javadoc inherited
-    public Iterator getImageTypes(int imageIndex) throws IOException {
+    @Override
+    public Iterator<ImageTypeSpecifier> getImageTypes(int imageIndex) throws IOException {
 
         ImageTypeSpecifier spec = ImageTypeSpecifier.createInterleaved(
             ColorSpace.getInstance(ColorSpace.CS_sRGB),
             new int[]{0, 1, 2},
             DataBuffer.TYPE_BYTE, false, false);
 
-        ArrayList specArray = new ArrayList();
+        ArrayList<ImageTypeSpecifier> specArray = new ArrayList<ImageTypeSpecifier>();
         specArray.add(spec);
 
         return specArray.iterator();
     }
 
     // Javadoc inherited
+    @Override
     public IIOMetadata getStreamMetadata() throws IOException {
         return null;
     }
 
     // Javadoc inherited
+    @Override
     public IIOMetadata getImageMetadata(int imageIndex) throws IOException {
         return null;
     }

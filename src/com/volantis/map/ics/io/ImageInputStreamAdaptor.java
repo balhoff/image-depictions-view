@@ -50,16 +50,19 @@ public class ImageInputStreamAdaptor extends InputStream {
     }
 
     // Javadoc inherited
+    @Override
     public int available() throws IOException {
         return super.available();
     }
 
     // Javadoc inherited
+    @Override
     public int read() throws IOException {
         return imageInputStream.read();
     }
 
     // Javadoc inherited
+    @Override
     public void close() throws IOException {
 
         // This class was originally created to enable an ImageInputStream
@@ -78,31 +81,37 @@ public class ImageInputStreamAdaptor extends InputStream {
     }
 
     // Javadoc inherited
+    @Override
     public synchronized void reset() throws IOException {
         imageInputStream.reset();
     }
 
     // Javadoc inherited
+    @Override
     public boolean markSupported() {
         return false;
     }
 
     // Javadoc inherited
+    @Override
     public synchronized void mark(int readlimit) {
         // No need to implement as mark is not supported by this class.
     }
 
     // Javadoc inherited
+    @Override
     public long skip(long n) throws IOException {
         return imageInputStream.skipBytes(n);
     }
 
     // Javadoc inherited
+    @Override
     public int read(byte b[]) throws IOException {
         return imageInputStream.read(b);
     }
 
     // Javadoc inherited
+    @Override
     public int read(byte b[], int off, int len) throws IOException {
         return imageInputStream.read(b, off, len);
     }

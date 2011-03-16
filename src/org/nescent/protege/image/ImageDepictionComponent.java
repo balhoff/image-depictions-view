@@ -7,8 +7,6 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
@@ -100,6 +98,7 @@ public class ImageDepictionComponent extends JComponent implements Scrollable {
         this.repaint();
     }
     
+    @SuppressWarnings("unused")
     private Logger log() {
         return Logger.getLogger(this.getClass());
     }

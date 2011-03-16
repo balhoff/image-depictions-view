@@ -69,14 +69,16 @@ public class DefaultMimeDiscoverer implements MimeDiscoverer {
     }
 
     // javadoc inherited
+    @Override
     public String discoverMimeType(byte[] data) {
         return discoverMimeType(data, null);
     }
     
     // javadoc inherited
+    @Override
     public String discoverMimeType(byte[] data, String fileExtension) {
 
-        Map extensions = extensionParser.getMatchers();
+        Map<Object,Object> extensions = extensionParser.getMatchers();
         
         if (fileExtension != null && !"".equals(fileExtension)) {
             String mime = (String) extensions.get(fileExtension);
@@ -85,8 +87,8 @@ public class DefaultMimeDiscoverer implements MimeDiscoverer {
             }
         }
 
-        for (Iterator iter = parser.getMatchers().iterator(); iter.hasNext();) {
-            Matcher matcher = (Matcher) iter.next();
+        for (Iterator<Matcher> iter = parser.getMatchers().iterator(); iter.hasNext();) {
+            Matcher matcher = iter.next();
             if (matcher.test(data)) {
                 return matcher.getMimeType();
             }
@@ -96,11 +98,13 @@ public class DefaultMimeDiscoverer implements MimeDiscoverer {
     }
 
     // javadoc inherited
+    @Override
     public String discoverMimeType(ImageInputStream data) throws IOException {
         return discoverMimeType(data, null);
     }
     
     // javadoc inherited
+    @Override
     public String discoverMimeType(ImageInputStream data, String fileExtension) throws IOException {
         long origPos = data.getStreamPosition();
         try {
@@ -118,11 +122,13 @@ public class DefaultMimeDiscoverer implements MimeDiscoverer {
     }
 
     // javadoc inherited
+    @Override
     public String discoverMimeType(InputStream stream) throws IOException {
         return discoverMimeType(stream, null); 
     }
     
     // javadoc inherited
+    @Override
     public String discoverMimeType(InputStream stream, String fileExtension) throws IOException {
 
         try {
@@ -147,6 +153,7 @@ public class DefaultMimeDiscoverer implements MimeDiscoverer {
     }
 
     // javadoc inherited
+    @Override
     public String discoverMimeType(File file) throws IOException {
         return discoverMimeType(new FileInputStream(file), getExtension(file));
     }
