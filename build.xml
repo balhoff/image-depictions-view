@@ -19,7 +19,7 @@
         distributions 
      -->
    <property file="local.properties"/>
-   <property name = "protege.common"    location="${protege.home}/bundle"/>
+   <property name = "protege.common"    location="${protege.home}/bundles"/>
    <property name = "protege.plugins"   location="${protege.home}/plugins"/>
    <property name = "protege.osgi"      location="${protege.home}/org.eclipse.osgi.jar"/>
 

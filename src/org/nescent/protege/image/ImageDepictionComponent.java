@@ -1,10 +1,14 @@
 package org.nescent.protege.image;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Rectangle;
+import java.util.ArrayList;
+import java.util.List;
 
+import javax.swing.BorderFactory;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.Scrollable;
@@ -23,6 +27,7 @@ public class ImageDepictionComponent extends JComponent implements Scrollable {
             rebuildUI();
         }
     };
+    private final List<ImageDepictionTile> tiles = new ArrayList<ImageDepictionTile>();
     
     public ImageDepictionComponent(ImageDepictionModel model) {
         super();
@@ -30,6 +35,7 @@ public class ImageDepictionComponent extends JComponent implements Scrollable {
         setVisible(true);
         this.model = model;
         model.addModelListener(this.modelListener);
+        this.setBorder(BorderFactory.createLineBorder(Color.GREEN));
     }
 
     @Override
@@ -61,37 +67,46 @@ public class ImageDepictionComponent extends JComponent implements Scrollable {
         this.model.setSubject(subject);
     }
     
+    public void dispose() {
+        this.disposeTiles();
+    }
+    
     private void rebuildUI() {
+        this.disposeTiles();
         this.removeAll();
         final GridBagConstraints gbc = new GridBagConstraints();
-        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.fill = GridBagConstraints.BOTH;
         gbc.gridwidth = 1;
         gbc.gridy = 0;
-        //this.add(new JLabel("<html>Direct: " + this.model.getDirectImageDepictions().toString() + "</html>"), gbc);
-        this.add(new JLabel("Direct image annotations"), gbc);
+        gbc.weightx = 1.0;
+        gbc.anchor = GridBagConstraints.WEST;
+        final JLabel directLabel = new JLabel("Direct image annotations");
+        this.add(directLabel, gbc);
+        gbc.anchor = GridBagConstraints.CENTER;
         for (IRI iri : this.model.getDirectImageDepictions()) {
             gbc.gridy += 1;
-            this.add(new ImageDepictionTile(iri), gbc);
-            //final BufferedImage image = ImageIO.read(iri.toURI().toURL());
-            //final BufferedImage image = ImageIO.read(new URL("http://images.apple.com/v20110310162107/startpage/images/promo_ipad_takeover_black20110308.jpg"));
-            //final ImageIcon icon = new ImageIcon(new URL("http://images.apple.com/v20110310162107/startpage/images/promo_ipad_takeover_black20110308.jpg"));
-            //final URLConnection connection = iri.toURI().toURL().openConnection();
-            //                final URLConnection connection = new URL("http://images.apple.com/v20110310162107/startpage/images/promo_ipad_takeover_black20110308.jpg").openConnection();
-            //                connection.connect();
-            //                final Object content = connection.getContent();
-            //this.add(new JLabel(content.getClass().toString()), gbc);
-
-            //this.add(new JLabel(icon), gbc);
-            //this.add(new JLabel(new ImageIcon(image)), gbc);
+            final ImageDepictionTile tile = new ImageDepictionTile(iri);
+            this.tiles.add(tile);
+            this.add(tile, gbc);
         }
         gbc.gridy += 1;
-        this.add(new JLabel("Inferred image annotations"), gbc);
+        gbc.anchor = GridBagConstraints.WEST;
+        final JLabel inferredLabel = new JLabel("Inferred image annotations");
+        this.add(inferredLabel, gbc);
+        gbc.anchor = GridBagConstraints.CENTER;
         for (IRI iri : this.model.getInferredImageDepictions()) {
             gbc.gridy += 1;
-            this.add(new ImageDepictionTile(iri), gbc);
+            final ImageDepictionTile tile = new ImageDepictionTile(iri);
+            this.tiles.add(tile);
+            this.add(tile, gbc);
         }
-        this.getParent().validate();
-        this.repaint();
+    }
+    
+    private void disposeTiles() {
+        for (ImageDepictionTile tile : this.tiles) {
+            tile.dispose();
+        }
+        this.tiles.clear();
     }
     
     @SuppressWarnings("unused")

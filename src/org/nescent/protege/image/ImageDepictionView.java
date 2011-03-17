@@ -1,7 +1,9 @@
 package org.nescent.protege.image;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 
+import javax.swing.BorderFactory;
 import javax.swing.JScrollPane;
 
 import org.protege.editor.owl.ui.view.AbstractOWLSelectionViewComponent;
@@ -27,11 +29,13 @@ public class ImageDepictionView extends AbstractOWLSelectionViewComponent {
         this.component = new ImageDepictionComponent(this.model);
         final JScrollPane scroller = new JScrollPane(this.component);
         this.add(scroller, BorderLayout.CENTER);
+        this.setBorder(BorderFactory.createLineBorder(Color.BLUE));
     }
 
     @Override
     public void disposeView() {
         this.model.dispose();
+        this.component.dispose();
     }
 
     @Override
