@@ -4,12 +4,7 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Rectangle;
-import java.awt.image.BufferedImage;
-import java.io.IOException;
-import java.net.MalformedURLException;
 
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
 import javax.swing.JComponent;
 import javax.swing.JLabel;
 import javax.swing.Scrollable;
@@ -69,31 +64,32 @@ public class ImageDepictionComponent extends JComponent implements Scrollable {
     private void rebuildUI() {
         this.removeAll();
         final GridBagConstraints gbc = new GridBagConstraints();
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.gridwidth = 1;
+        gbc.gridy = 0;
         //this.add(new JLabel("<html>Direct: " + this.model.getDirectImageDepictions().toString() + "</html>"), gbc);
+        this.add(new JLabel("Direct image annotations"), gbc);
         for (IRI iri : this.model.getDirectImageDepictions()) {
-            try {
-                gbc.gridy++;
-                final BufferedImage image = ImageIO.read(iri.toURI().toURL());
-                //final BufferedImage image = ImageIO.read(new URL("http://images.apple.com/v20110310162107/startpage/images/promo_ipad_takeover_black20110308.jpg"));
-                //final ImageIcon icon = new ImageIcon(new URL("http://images.apple.com/v20110310162107/startpage/images/promo_ipad_takeover_black20110308.jpg"));
-                //final URLConnection connection = iri.toURI().toURL().openConnection();
-//                final URLConnection connection = new URL("http://images.apple.com/v20110310162107/startpage/images/promo_ipad_takeover_black20110308.jpg").openConnection();
-//                connection.connect();
-//                final Object content = connection.getContent();
-                //this.add(new JLabel(content.getClass().toString()), gbc);
-                
-                //this.add(new JLabel(icon), gbc);
-                this.add(new JLabel(new ImageIcon(image)), gbc);
-            } catch (MalformedURLException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            } catch (IOException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
+            gbc.gridy += 1;
+            this.add(new ImageDepictionTile(iri), gbc);
+            //final BufferedImage image = ImageIO.read(iri.toURI().toURL());
+            //final BufferedImage image = ImageIO.read(new URL("http://images.apple.com/v20110310162107/startpage/images/promo_ipad_takeover_black20110308.jpg"));
+            //final ImageIcon icon = new ImageIcon(new URL("http://images.apple.com/v20110310162107/startpage/images/promo_ipad_takeover_black20110308.jpg"));
+            //final URLConnection connection = iri.toURI().toURL().openConnection();
+            //                final URLConnection connection = new URL("http://images.apple.com/v20110310162107/startpage/images/promo_ipad_takeover_black20110308.jpg").openConnection();
+            //                connection.connect();
+            //                final Object content = connection.getContent();
+            //this.add(new JLabel(content.getClass().toString()), gbc);
+
+            //this.add(new JLabel(icon), gbc);
+            //this.add(new JLabel(new ImageIcon(image)), gbc);
         }
-        gbc.gridy++;
-        //this.add(new JLabel("<html>Inferred: " + this.model.getInferredImageDepictions().toString() + "</html>"), gbc);
+        gbc.gridy += 1;
+        this.add(new JLabel("Inferred image annotations"), gbc);
+        for (IRI iri : this.model.getInferredImageDepictions()) {
+            gbc.gridy += 1;
+            this.add(new ImageDepictionTile(iri), gbc);
+        }
         this.getParent().validate();
         this.repaint();
     }
