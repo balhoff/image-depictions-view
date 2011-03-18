@@ -79,4 +79,5 @@ public class ImageDepictionView extends AbstractOWLSelectionViewComponent {
     protected boolean isOWLAnnotationPropertyView() {
         return false;
     }
+    
 }

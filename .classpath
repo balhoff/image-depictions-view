@@ -22,7 +22,6 @@
 	<classpathentry kind="lib" path="/Users/jim/Applications/Protege-4.1.app/Contents/Resources/Java/bundle/org.protege.jaxb.jar"/>
 	<classpathentry kind="lib" path="/Users/jim/Applications/Protege-4.1.app/Contents/Resources/Java/felix.jar"/>
 	<classpathentry kind="lib" path="/Users/jim/Applications/Protege-4.1.app/Contents/Resources/Java/ProtegeLauncher.jar"/>
-	<classpathentry kind="lib" path="/phenex-git/lib/log4j-1.2.15.jar"/>
 	<classpathentry kind="lib" path="lib/batik-anim.jar"/>
 	<classpathentry kind="lib" path="lib/batik-awt-util.jar"/>
 	<classpathentry kind="lib" path="lib/batik-bridge.jar"/>
@@ -48,5 +47,6 @@
 	<classpathentry kind="lib" path="lib/js.jar"/>
 	<classpathentry kind="lib" path="lib/pdf-transcoder.jar"/>
 	<classpathentry kind="lib" path="lib/svg-image-reader-1.0.jar"/>
+	<classpathentry kind="lib" path="build/lib/log4j.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

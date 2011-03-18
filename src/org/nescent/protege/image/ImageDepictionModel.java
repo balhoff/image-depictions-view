@@ -28,7 +28,6 @@ public class ImageDepictionModel {
     private final OWLModelManager manager;
     private final Set<ImageDepictionModelListener> listeners = new HashSet<ImageDepictionModelListener>();
     private final OWLOntologyChangeListener ontologyChangeListener = new OWLOntologyChangeListener() {
-        @Override
         public void ontologiesChanged(List<? extends OWLOntologyChange> list) throws OWLException {
             handleOntologyChanges(list);
         }

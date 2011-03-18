@@ -22,7 +22,6 @@ public class ImageDepictionComponent extends JComponent implements Scrollable {
     
     private final ImageDepictionModel model;
     private final ImageDepictionModelListener modelListener = new ImageDepictionModelListener() {
-        @Override
         public void modelChanged() {
             rebuildUI();
         }
@@ -38,27 +37,22 @@ public class ImageDepictionComponent extends JComponent implements Scrollable {
         this.setBorder(BorderFactory.createLineBorder(Color.GREEN));
     }
 
-    @Override
     public Dimension getPreferredScrollableViewportSize() {
         return new Dimension(300, 200);
     }
 
-    @Override
     public int getScrollableUnitIncrement(Rectangle rectangle, int i, int i1) {
         return getFontMetrics(getFont()).getHeight();
     }
 
-    @Override
     public int getScrollableBlockIncrement(Rectangle rectangle, int i, int i1) {
         return 100;
     }
 
-    @Override
     public boolean getScrollableTracksViewportWidth() {
         return true;
     }
 
-    @Override
     public boolean getScrollableTracksViewportHeight() {
         return false;
     }

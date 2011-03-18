@@ -27,15 +27,11 @@ public class ImageDepictionTile extends JComponent {
     private Image image;
     private final SwingWorker<Image, Object> worker;
     private final ComponentListener componentListener = new ComponentListener() {
-        @Override
         public void componentShown(ComponentEvent e) {}
-        @Override
         public void componentResized(ComponentEvent e) {
             rebuildUI();
         }
-        @Override
         public void componentMoved(ComponentEvent e) {}
-        @Override
         public void componentHidden(ComponentEvent e) {}
     };
 
@@ -55,7 +51,6 @@ public class ImageDepictionTile extends JComponent {
                         SwingUtilities.invokeLater(new Runnable() {
                             // this is the only way I can get the images to immediately 
                             // display without resizing or obscuring the window
-                            @Override
                             public void run() {
                                 revalidate();
                                 if (getParent() != null) {
@@ -103,8 +98,6 @@ public class ImageDepictionTile extends JComponent {
         this.removeAll();
         final JLabel label = new JLabel(errorMessage);
         this.add(label);
-//        this.setMinimumSize(label.getPreferredSize());
-//        this.setPreferredSize(label.getPreferredSize());
     }
 
     @SuppressWarnings("unused")
