@@ -37,8 +37,8 @@ public class ImageDepictionModel {
     
     public ImageDepictionModel(OWLModelManager manager) {
         this.manager = manager;
-        this.manager.addOntologyChangeListener(ontologyChangeListener);
         this.depicts = this.manager.getOWLDataFactory().getOWLObjectProperty(IRI.create(DEPICTS));
+        this.manager.addOntologyChangeListener(ontologyChangeListener);
     }
 
     public void addModelListener(ImageDepictionModelListener modelListener) {
