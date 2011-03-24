@@ -19,6 +19,7 @@ public class ImageDepictionsFrameSectionRow extends AbstractOWLFrameSectionRow<O
 
 	protected ImageDepictionsFrameSectionRow(OWLEditorKit owlEditorKit, OWLFrameSection<OWLClassExpression, OWLIndividualAxiom, OWLNamedIndividual> section, OWLOntology ontology, OWLClassExpression rootObject, OWLIndividualAxiom axiom) {
 		super(owlEditorKit, section, ontology, rootObject, axiom);
+		System.err.println("Created ImageDepictionsFrameSectionRow");
 	}
 
 	public List<? extends OWLObject> getManipulatableObjects() {
@@ -52,7 +53,5 @@ public class ImageDepictionsFrameSectionRow extends AbstractOWLFrameSectionRow<O
 	public boolean isEditable() {
 		return false;
 	}
-	
-	
 
 }
