@@ -33,16 +33,16 @@ public class ImageDepictionsFrameSection extends AbstractOWLFrameSection<OWLClas
 
 	@Override
 	protected void clear() {
+		for (OWLFrameSectionRow<OWLClassExpression, OWLIndividualAxiom, OWLNamedIndividual> row : this.getRows()) {
+			if (row instanceof ImageDepictionsFrameSectionRow) {
+				((ImageDepictionsFrameSectionRow)row).dispose();
+			}
+		}
 		this.added.clear();
 	}
 
-	/**
-	 * Refills the section with rows.  This method will be called
-	 * by the system and should be directly called.
-	 */
 	@Override
 	protected void refill(OWLOntology ontology) {
-		//TODO look for direct object property assertions for direct depictions also, and create proper axioms
 		final OWLClassExpression classOfDepictions = this.getRootObject();
 		if (classOfDepictions instanceof OWLObjectHasValue) {
 			final OWLObjectHasValue hasValue = (OWLObjectHasValue)classOfDepictions;
