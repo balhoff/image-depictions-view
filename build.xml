@@ -11,8 +11,8 @@
 
    <property file="version.properties"/>
    <property name="major.version" value="0"/>
-   <property name="minor.version" value="0"/>
-   <property name="micro.version" value="9"/>
+   <property name="minor.version" value="9"/>
+   <property name="micro.version" value="0"/>
    <property name="update.properties.file" value="update.properties"/>
 
    <!-- 
@@ -244,7 +244,7 @@
 id=${plugin}
 name=Image Depictions View
 version=${bundle.version}
-download=http://co-ode-owl-plugins.googlecode.com/files/${plugin}_${major.version}_${minor.version}_${micro.version}.zip
+download=https://github.com/downloads/balhoff/image-depictions-view/${plugin}_${major.version}_${minor.version}_${micro.version}.zip
 license=http://www.opensource.org/licenses/mit-license.php
 author=James P. Balhoff, National Evolutionary Synthesis Center
        </echo>
