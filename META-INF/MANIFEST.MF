@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Image Depiction View
+Bundle-Name: Image Depictions View
 Bundle-SymbolicName: org.nescent.protege.image;singleton:=true
 Bundle-Category: protege
 Bundle-Description: An alternative to the annotations view with configurable fields

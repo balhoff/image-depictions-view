@@ -42,7 +42,7 @@ public class ImageDepictionCellRenderer extends OWLFrameListRenderer {
 				final Image image = row.getImage();
 				if (image != null) {
 					final int imageWidth = image.getWidth(null);
-		            final int parentWidth = Math.max(0, list.getWidth() - 20);
+		            final int parentWidth = Math.max(1, list.getWidth() - 80);
 		            final int resizeWidth = (imageWidth > parentWidth) ? parentWidth : imageWidth;
 					this.imageLabel.setIcon((new ImageIcon(image.getScaledInstance(resizeWidth, -1, Image.SCALE_DEFAULT))));
 				} else {
