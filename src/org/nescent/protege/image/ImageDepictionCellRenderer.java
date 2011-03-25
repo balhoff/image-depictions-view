@@ -46,7 +46,9 @@ public class ImageDepictionCellRenderer extends OWLFrameListRenderer {
 		            final int resizeWidth = (imageWidth > parentWidth) ? parentWidth : imageWidth;
 					this.imageLabel.setIcon((new ImageIcon(image.getScaledInstance(resizeWidth, -1, Image.SCALE_DEFAULT))));
 				} else {
-					this.imageLabel.setText("<HTML><I>Loading image...</I></HTML>");
+					if (row.isLoading()) {
+						this.imageLabel.setText("<HTML><I>Loading image...</I></HTML>");
+					}
 				}
 			}
 			return panel;
@@ -70,6 +72,7 @@ public class ImageDepictionCellRenderer extends OWLFrameListRenderer {
 		this.panel.add(this.imageLabel, gbc);
 	}
 
+	@SuppressWarnings("unused")
 	private Logger log() {
 		return Logger.getLogger(this.getClass());
 	}

@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.protege.editor.owl.OWLEditorKit;
+import org.protege.editor.owl.model.inference.ReasonerPreferences.OptionalInferenceTask;
 import org.protege.editor.owl.ui.editor.OWLObjectEditor;
 import org.protege.editor.owl.ui.frame.AbstractOWLFrameSection;
 import org.protege.editor.owl.ui.frame.OWLFrame;
@@ -23,7 +24,7 @@ import org.semanticweb.owlapi.reasoner.NodeSet;
 public class ImageDepictionsFrameSection extends AbstractOWLFrameSection<OWLClassExpression, OWLIndividualAxiom, OWLNamedIndividual> {
 
 	public static final String LABEL = "Image depictions";
-
+	private static final int INITIAL_DOWNLOADS = 5;
 	private Set<OWLIndividual> added = new HashSet<OWLIndividual>();
 
 
@@ -50,33 +51,49 @@ public class ImageDepictionsFrameSection extends AbstractOWLFrameSection<OWLClas
 			for (OWLObjectPropertyAssertionAxiom axiom : objectPropertyAssertionAxioms) {
 				if ((axiom.getProperty().equals(hasValue.getProperty()) && (axiom.getObject().equals(hasValue.getValue())) && (axiom.getSubject() instanceof OWLNamedIndividual))) {
 					this.added.add(axiom.getSubject());
-					this.addRow(new ImageDepictionsFrameSectionRow(getOWLEditorKit(), this, ontology, getRootObject(), axiom));
+					final ImageDepictionsFrameSectionRow row = new ImageDepictionsFrameSectionRow(getOWLEditorKit(), this, ontology, getRootObject(), axiom);
+					if (this.getRows().size() < INITIAL_DOWNLOADS) {
+						row.downloadImage();
+					}
+					this.addRow(row);
 				}
 			}
 		}
 		final Set<OWLClassAssertionAxiom> axioms = ontology.getAxioms(AxiomType.CLASS_ASSERTION, true);
-            for (OWLClassAssertionAxiom axiom : axioms) {
-                if ((axiom.getIndividual() instanceof OWLNamedIndividual) && (axiom.getClassExpression().equals(classOfDepictions))) {
-                	final OWLIndividual depiction = axiom.getIndividual();
-                	if (!this.added.contains(depiction)) {
-                		this.added.add(axiom.getIndividual());
-                        this.addRow(new ImageDepictionsFrameSectionRow(getOWLEditorKit(), this, ontology, getRootObject(), axiom));	
-            		}
-                }
-            }
+		for (OWLClassAssertionAxiom axiom : axioms) {
+			if ((axiom.getIndividual() instanceof OWLNamedIndividual) && (axiom.getClassExpression().equals(classOfDepictions))) {
+				final OWLIndividual depiction = axiom.getIndividual();
+				if (!this.added.contains(depiction)) {
+					this.added.add(axiom.getIndividual());
+					final ImageDepictionsFrameSectionRow row = new ImageDepictionsFrameSectionRow(getOWLEditorKit(), this, ontology, getRootObject(), axiom);
+					if (this.getRows().size() < INITIAL_DOWNLOADS) {
+						row.downloadImage();
+					}
+					this.addRow(row);	
+				}
+			}
+		}
 	}
 
 	@Override
 	protected void refillInferred() {
-		final OWLClassExpression classOfDepictions = this.getRootObject();
-         final NodeSet<OWLNamedIndividual> depictions = this.getReasoner().getInstances(classOfDepictions, false);
-         for (OWLNamedIndividual depiction : depictions.getFlattened()) {
-        	 if (!this.added.contains(depiction)) {
-        		 final OWLClassAssertionAxiom axiom = this.getOWLDataFactory().getOWLClassAssertionAxiom(classOfDepictions, depiction);
-                 this.added.add(depiction);
-                 this.addRow(new ImageDepictionsFrameSectionRow(getOWLEditorKit(), this, null, getRootObject(), axiom));
-        	 }
-         }
+		getOWLModelManager().getReasonerPreferences().executeTask(OptionalInferenceTask.SHOW_INFERED_CLASS_MEMBERS, new Runnable() {
+			public void run() {
+				final OWLClassExpression classOfDepictions = getRootObject();
+				final NodeSet<OWLNamedIndividual> depictions = getReasoner().getInstances(classOfDepictions, false);
+				for (OWLNamedIndividual depiction : depictions.getFlattened()) {
+					if (!added.contains(depiction)) {
+						final OWLClassAssertionAxiom axiom = getOWLDataFactory().getOWLClassAssertionAxiom(classOfDepictions, depiction);
+						added.add(depiction);
+						final ImageDepictionsFrameSectionRow row = new ImageDepictionsFrameSectionRow(getOWLEditorKit(), ImageDepictionsFrameSection.this, null, getRootObject(), axiom);
+						if (getRows().size() < INITIAL_DOWNLOADS) {
+							row.downloadImage();
+						}
+						addRow(row);
+					}
+				}
+			}
+		});
 	}
 
 	@Override
@@ -98,6 +115,5 @@ public class ImageDepictionsFrameSection extends AbstractOWLFrameSection<OWLClas
 	public boolean canAdd() {
 		return false;
 	}
-
 
 }

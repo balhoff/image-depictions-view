@@ -1,9 +1,12 @@
 package org.nescent.protege.image;
 
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -11,6 +14,7 @@ import javax.imageio.ImageIO;
 import javax.swing.SwingWorker;
 
 import org.apache.log4j.Logger;
+import org.protege.editor.core.ui.list.MListButton;
 import org.protege.editor.owl.OWLEditorKit;
 import org.protege.editor.owl.ui.editor.OWLObjectEditor;
 import org.protege.editor.owl.ui.frame.AbstractOWLFrameSectionRow;
@@ -29,6 +33,7 @@ public class ImageDepictionsFrameSectionRow extends AbstractOWLFrameSectionRow<O
 
 	private final SwingWorker<Image, Object> worker;
 	private Image image;
+	private boolean loading = false;
 
 	protected ImageDepictionsFrameSectionRow(OWLEditorKit owlEditorKit, OWLFrameSection<OWLClassExpression, OWLIndividualAxiom, OWLNamedIndividual> section, OWLOntology ontology, OWLClassExpression rootObject, OWLIndividualAxiom axiom) {
 		super(owlEditorKit, section, ontology, rootObject, axiom);
@@ -41,6 +46,7 @@ public class ImageDepictionsFrameSectionRow extends AbstractOWLFrameSectionRow<O
 			protected void done() {
 				if (!this.isCancelled()) {
 					try {
+						loading = false;
 						image = this.get();
 						getFrameSection().getFrame().fireContentChanged();
 					} catch (InterruptedException e) {
@@ -54,7 +60,6 @@ public class ImageDepictionsFrameSectionRow extends AbstractOWLFrameSectionRow<O
 				return Logger.getLogger(this.getClass());
 			}
 		};
-		this.worker.execute();
 	}
 
 	public List<? extends OWLObject> getManipulatableObjects() {
@@ -75,6 +80,16 @@ public class ImageDepictionsFrameSectionRow extends AbstractOWLFrameSectionRow<O
 
 	public void dispose() {
 		this.worker.cancel(true);
+	}
+	
+	public void downloadImage() {
+		this.loading = true;
+		getFrameSection().getFrame().fireContentChanged();
+		this.worker.execute();
+	}
+	
+	public boolean isLoading() {
+		return this.loading;
 	}
 
 	private IRI getImageIRI() {
@@ -115,5 +130,17 @@ public class ImageDepictionsFrameSectionRow extends AbstractOWLFrameSectionRow<O
 		return false;
 	}
 
+	@Override
+	public List<MListButton> getAdditionalButtons() {
+		if ((this.image == null) && (this.loading == false)) {
+			return Arrays.asList((MListButton)(new ImageDownloadButton(new ActionListener() {
+				public void actionPerformed(ActionEvent e) {
+					downloadImage();
+				}
+			})));
+		} else {
+			return Collections.emptyList();
+		}
+	}
 
 }
