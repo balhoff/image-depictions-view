@@ -2,7 +2,10 @@
 
 <plugin>
 
-    <extension id="ImageDepictionView" point="org.protege.editor.core.application.ViewComponent">
+    <extension
+          id="ImageDepictionView"
+          name="Image depictions"
+          point="org.protege.editor.core.application.ViewComponent">
         <label value="Image depictions"/>
         <class value="org.nescent.protege.image.ImageDepictionView"/>
     </extension>
