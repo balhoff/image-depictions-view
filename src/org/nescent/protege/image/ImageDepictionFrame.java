@@ -4,11 +4,11 @@ import org.protege.editor.owl.OWLEditorKit;
 import org.protege.editor.owl.ui.frame.AbstractOWLFrame;
 import org.semanticweb.owlapi.model.OWLClassExpression;
 
-public class ImageDepictionsFrame extends AbstractOWLFrame<OWLClassExpression> {
+public class ImageDepictionFrame extends AbstractOWLFrame<OWLClassExpression> {
 
-	public ImageDepictionsFrame(OWLEditorKit editorKit) {
+	public ImageDepictionFrame(OWLEditorKit editorKit) {
         super(editorKit.getModelManager().getOWLOntologyManager());
-        addSection(new ImageDepictionsFrameSection(editorKit, this));
+        addSection(new ImageDepictionFrameSection(editorKit, this));
     }
 
 }

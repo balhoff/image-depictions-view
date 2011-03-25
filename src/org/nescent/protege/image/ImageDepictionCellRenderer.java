@@ -37,8 +37,8 @@ public class ImageDepictionCellRenderer extends OWLFrameListRenderer {
 				this.owlComponent = (JComponent)component;
 				this.addComponents();
 			}
-			if (value instanceof ImageDepictionsFrameSectionRow) {
-				final ImageDepictionsFrameSectionRow row = (ImageDepictionsFrameSectionRow)value;
+			if (value instanceof ImageDepictionFrameSectionRow) {
+				final ImageDepictionFrameSectionRow row = (ImageDepictionFrameSectionRow)value;
 				final Image image = row.getImage();
 				if (image != null) {
 					final int imageWidth = image.getWidth(null);

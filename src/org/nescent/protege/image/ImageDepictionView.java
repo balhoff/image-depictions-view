@@ -31,7 +31,7 @@ public class ImageDepictionView extends AbstractOWLSelectionViewComponent {
 	@Override
 	public void initialiseView() {
 		this.depicts = this.getOWLModelManager().getOWLDataFactory().getOWLObjectProperty(IRI.create(DEPICTS));
-		this.list = new OWLFrameList<OWLClassExpression>(this.getOWLEditorKit(), new ImageDepictionsFrame(getOWLEditorKit()));
+		this.list = new OWLFrameList<OWLClassExpression>(this.getOWLEditorKit(), new ImageDepictionFrame(getOWLEditorKit()));
 		this.list.setCellRenderer(new ImageDepictionCellRenderer(this.getOWLEditorKit()));
 		setLayout(new BorderLayout());
 		add(new JScrollPane(this.list));

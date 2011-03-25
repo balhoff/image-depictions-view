@@ -29,13 +29,13 @@ import org.semanticweb.owlapi.model.OWLObject;
 import org.semanticweb.owlapi.model.OWLObjectPropertyAssertionAxiom;
 import org.semanticweb.owlapi.model.OWLOntology;
 
-public class ImageDepictionsFrameSectionRow extends AbstractOWLFrameSectionRow<OWLClassExpression, OWLIndividualAxiom, OWLNamedIndividual> {
+public class ImageDepictionFrameSectionRow extends AbstractOWLFrameSectionRow<OWLClassExpression, OWLIndividualAxiom, OWLNamedIndividual> {
 
 	private final SwingWorker<Image, Object> worker;
 	private Image image;
 	private boolean loading = false;
 
-	protected ImageDepictionsFrameSectionRow(OWLEditorKit owlEditorKit, OWLFrameSection<OWLClassExpression, OWLIndividualAxiom, OWLNamedIndividual> section, OWLOntology ontology, OWLClassExpression rootObject, OWLIndividualAxiom axiom) {
+	protected ImageDepictionFrameSectionRow(OWLEditorKit owlEditorKit, OWLFrameSection<OWLClassExpression, OWLIndividualAxiom, OWLNamedIndividual> section, OWLOntology ontology, OWLClassExpression rootObject, OWLIndividualAxiom axiom) {
 		super(owlEditorKit, section, ontology, rootObject, axiom);
 		this.worker = new SwingWorker<Image, Object>() {
 			@Override
